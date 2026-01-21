@@ -1,10 +1,10 @@
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import HomeScreen from 'screens/HomeScreen';
 import LibraryScreen from 'screens/LibraryScreen';
 import SearchScreen from 'screens/SearchScreen';
 import AppHeader from './AppHeader';
+import FloatingTabBar from './FloatingTabBar';
 
 export type TabParamList = {
   Home: undefined;
@@ -13,12 +13,12 @@ export type TabParamList = {
 };
 
 export default function Tabs() {
-  const insets = useSafeAreaInsets();
   const Tab = createBottomTabNavigator<TabParamList>();
 
   return (
     <Tab.Navigator
       initialRouteName="Home"
+      tabBar={(props) => <FloatingTabBar {...props} />}
       screenOptions={({ route }) => ({
         // ICONS
         tabBarIcon: ({ focused, color, size }) => {
@@ -38,24 +38,12 @@ export default function Tabs() {
         tabBarInactiveTintColor: '#9ca3af',
         header: () => <AppHeader />,
         // FLOATING TAB BAR
-        tabBarShowLabel: true,
+        tabBarShowLabel: false,
         tabBarStyle: {
+          backgroundColor: 'transparent',
           position: 'absolute',
-          left: 24,
-          right: 24,
-          bottom: insets.bottom + 12,
-          height: 64,
-          borderRadius: 24,
-          backgroundColor: '#ffffff',
           borderTopWidth: 0,
-          shadowColor: '#000',
-          shadowOffset: { width: 0, height: 10 },
-          shadowOpacity: 0.12,
-          shadowRadius: 20,
-          elevation: 10,
-        },
-        tabBarItemStyle: {
-          paddingVertical: 10,
+          elevation: 0, // Android
         },
       })}>
       <Tab.Screen name="Home" component={HomeScreen} />

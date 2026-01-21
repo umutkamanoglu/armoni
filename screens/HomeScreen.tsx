@@ -1,4 +1,5 @@
-import { ScrollView, Text } from 'react-native';
+import ScreenProvider from 'components/ScreenProvider';
+import { Text } from 'react-native';
 
 type Props = {
   navigation: any;
@@ -6,8 +7,10 @@ type Props = {
 
 export default function HomeScreen({ navigation }: Props) {
   return (
-    <ScrollView className="flex-1 bg-white">
+    <ScreenProvider>
       <Text>Home Screen deneme</Text>
-    </ScrollView>
+      <Text className="h-screen bg-red-500">Home Screen deneme</Text>
+      <Text>Home Screen deneme</Text>
+    </ScreenProvider>
   );
 }
