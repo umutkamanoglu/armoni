@@ -14,6 +14,7 @@ export type TabParamList = {
 export default function Tabs() {
   const insets = useSafeAreaInsets();
   const Tab = createBottomTabNavigator<TabParamList>();
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -24,14 +25,16 @@ export default function Tabs() {
 
           if (route.name === 'Home') {
             iconName = focused ? 'home' : 'home-outline';
+          } else if (route.name === 'Search') {
+            iconName = focused ? 'search' : 'search-outline';
+          } else if (route.name === 'Library') {
+            iconName = focused ? 'library' : 'library-outline';
           }
 
           return <Ionicons name={iconName} size={size} color={color} />;
         },
-
         tabBarActiveTintColor: '#3b82f6',
         tabBarInactiveTintColor: '#9ca3af',
-
         // HEADER
         headerStyle: {
           backgroundColor: '#ffffff',
@@ -45,8 +48,7 @@ export default function Tabs() {
           fontWeight: 'bold',
           fontSize: 18,
         },
-
-        // FLOATING TAB BAR 🎈
+        // FLOATING TAB BAR
         tabBarShowLabel: true,
         tabBarStyle: {
           position: 'absolute',
@@ -57,17 +59,12 @@ export default function Tabs() {
           borderRadius: 24,
           backgroundColor: '#ffffff',
           borderTopWidth: 0,
-
-          // iOS shadow
           shadowColor: '#000',
           shadowOffset: { width: 0, height: 10 },
           shadowOpacity: 0.12,
           shadowRadius: 20,
-
-          // Android shadow
           elevation: 10,
         },
-
         tabBarItemStyle: {
           paddingVertical: 10,
         },
