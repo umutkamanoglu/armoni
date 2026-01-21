@@ -4,10 +4,10 @@ type Props = {
   navigation: any;
 };
 
-export default function HomeScreen({ navigation }: Props) {
+export default function LibraryScreen({ navigation }: Props) {
   return (
     <ScrollView className="flex-1 bg-white">
-      <Text>Home Screen deneme</Text>
+      <Text>Kütüphane</Text>
     </ScrollView>
   );
 }
