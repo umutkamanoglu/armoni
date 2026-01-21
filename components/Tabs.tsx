@@ -4,6 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import HomeScreen from 'screens/HomeScreen';
 import LibraryScreen from 'screens/LibraryScreen';
 import SearchScreen from 'screens/SearchScreen';
+import AppHeader from './AppHeader';
 
 export type TabParamList = {
   Home: undefined;
@@ -35,19 +36,7 @@ export default function Tabs() {
         },
         tabBarActiveTintColor: '#3b82f6',
         tabBarInactiveTintColor: '#9ca3af',
-        // HEADER
-        headerStyle: {
-          backgroundColor: '#ffffff',
-          elevation: 0,
-          shadowOpacity: 0,
-          borderBottomWidth: 1,
-          borderBottomColor: '#e5e7eb',
-        },
-        headerTintColor: '#111827',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-          fontSize: 18,
-        },
+        header: () => <AppHeader />,
         // FLOATING TAB BAR
         tabBarShowLabel: true,
         tabBarStyle: {
