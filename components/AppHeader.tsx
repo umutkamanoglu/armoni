@@ -6,7 +6,9 @@ export default function AppHeader({ navigation }: { navigation: any }) {
   return (
     <SafeAreaView edges={['top']} className="">
       <View className="flex h-14 flex-row items-center justify-between px-[5vw]">
-        <Text className="text-2xl font-bold">Armoni</Text>
+        <Text className="text-2xl font-bold">
+          Armoni <Ionicons name="headset-sharp" size={20} color="black" />
+        </Text>
         <View className="flex flex-row items-center justify-center gap-5">
           <TouchableOpacity
             activeOpacity={0.8}
