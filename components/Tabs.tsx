@@ -1,5 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useNavigation } from '@react-navigation/native';
 import HomeScreen from 'screens/HomeScreen';
 import LibraryScreen from 'screens/LibraryScreen';
 import SearchScreen from 'screens/SearchScreen';
@@ -14,6 +15,8 @@ export type TabParamList = {
 
 export default function Tabs() {
   const Tab = createBottomTabNavigator<TabParamList>();
+
+  const navigation = useNavigation();
 
   return (
     <Tab.Navigator
@@ -36,7 +39,7 @@ export default function Tabs() {
         },
         tabBarActiveTintColor: '#3b82f6',
         tabBarInactiveTintColor: '#9ca3af',
-        header: () => <AppHeader />,
+        header: () => <AppHeader navigation={navigation} />,
         // FLOATING TAB BAR
         tabBarShowLabel: false,
         tabBarStyle: {
@@ -47,7 +50,13 @@ export default function Tabs() {
         },
       })}>
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Search" component={SearchScreen} />
+      <Tab.Screen
+        name="Search"
+        component={SearchScreen}
+        options={{
+          tabBarButton: () => null,
+        }}
+      />
       <Tab.Screen name="Library" component={LibraryScreen} />
     </Tab.Navigator>
   );

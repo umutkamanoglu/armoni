@@ -10,7 +10,7 @@ export default function FloatingTabBar({ state, descriptors, navigation }: Botto
       pointerEvents="box-none"
       style={{
         position: 'absolute',
-        bottom: insets.bottom + 12, // safe area + margin
+        bottom: insets.bottom + 12,
         left: 0,
         right: 0,
         alignItems: 'center',
@@ -28,13 +28,17 @@ export default function FloatingTabBar({ state, descriptors, navigation }: Botto
           shadowOffset: { width: 0, height: 10 },
           shadowOpacity: 0.12,
           shadowRadius: 20,
-          elevation: 10, // Android shadow
+          elevation: 10,
         }}>
         {state.routes.map((route, index) => {
+          // Search tab'ını atla
+          if (route.name === 'Search') {
+            return null;
+          }
+
           const { options } = descriptors[route.key];
           const isFocused = state.index === index;
 
-          // Icon'u screenOptions.tabBarIcon üzerinden alıyoruz
           const icon = options.tabBarIcon?.({
             focused: isFocused,
             color: isFocused
@@ -49,7 +53,6 @@ export default function FloatingTabBar({ state, descriptors, navigation }: Botto
               target: route.key,
               canPreventDefault: true,
             });
-
             if (!isFocused && !event.defaultPrevented) {
               navigation.navigate(route.name);
             }
