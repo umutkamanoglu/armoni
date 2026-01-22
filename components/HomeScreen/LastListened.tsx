@@ -1,5 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
-import { FlatList, Image, Text, TouchableOpacity, View } from 'react-native';
+import { FlashList } from '@shopify/flash-list';
+import { Text, View } from 'react-native';
+import PlaylistCard from './PlaylistCard';
 
 export default function LastListened() {
   const playlists = [
@@ -36,25 +38,13 @@ export default function LastListened() {
   ];
   return (
     <View className="flex">
-      <Text className="mb-2 text-lg font-bold">
-        Son Dinlenenler <Ionicons name="musical-notes-outline" size={14} color="black" />
+      <Text className="mb-2 text-xl font-bold">
+        Son Dinlenenler <Ionicons name="musical-notes-outline" size={18} color="black" />
       </Text>
-      <FlatList
-        data={playlists}
-        numColumns={2} // 2 sütunlu grid
-        keyExtractor={(item) => item.id}
-        columnWrapperStyle={{ gap: 12, marginBottom: 12 }} // sütunlar arası boşluk
-        renderItem={({ item, index }) => (
-          <TouchableOpacity
-            className={`flex-1 ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'} items-center overflow-hidden rounded-md bg-neutral-100`}
-            activeOpacity={0.9}
-            style={{ height: 60 }}>
-            <Image source={{ uri: item.image }} className="h-full w-[60px]" />
-            <Text className="ml-3 flex-1 font-semibold text-neutral-900" numberOfLines={2}>
-              {item.title}
-            </Text>
-          </TouchableOpacity>
-        )}
+      <FlashList
+        data={playlists.slice(0, 6)}
+        numColumns={2}
+        renderItem={({ item }) => <PlaylistCard {...item} />}
       />
     </View>
   );
