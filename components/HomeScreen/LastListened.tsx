@@ -8,14 +8,21 @@ export default function LastListened() {
       title: 'Song Title',
       artist: 'Artist Name',
       duration: '3:45',
-      image: 'https://picsum.photos/200?random=1',
+      image: 'https://picsum.photos/200?random=12',
     },
     {
       id: '2',
       title: 'Another Song Title',
       artist: 'Another Artist Name',
       duration: '4:20',
-      image: 'https://picsum.photos/200?random=2',
+      image: 'https://picsum.photos/200?random=21',
+    },
+    {
+      id: '3',
+      title: 'Yet Another Song Title',
+      artist: 'Yet Another Artist Name',
+      duration: '5:15',
+      image: 'https://picsum.photos/200?random=33',
     },
   ];
 
@@ -26,7 +33,7 @@ export default function LastListened() {
         <TouchableOpacity
           activeOpacity={0.8}
           key={song.id}
-          className="flex-row items-center justify-between px-4 py-2">
+          className="flex-row items-center justify-between py-2">
           <View className="flex-row items-center">
             <Image source={{ uri: song.image }} className="h-16 w-16 rounded-md" />
             <View className="ml-2">
