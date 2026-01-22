@@ -1,51 +1,47 @@
 import { Ionicons } from '@expo/vector-icons';
-import { FlashList } from '@shopify/flash-list';
-import { Text, View } from 'react-native';
-import PlaylistCard from './PlaylistCard';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 
 export default function LastListened() {
-  const playlists = [
+  const songs = [
     {
       id: '1',
-      title: 'kaybedecek bir canım kaldı onu da kaybetmek üzereyim.',
+      title: 'Song Title',
+      artist: 'Artist Name',
+      duration: '3:45',
       image: 'https://picsum.photos/200?random=1',
     },
     {
       id: '2',
-      title: 'örnek playlist 2',
+      title: 'Another Song Title',
+      artist: 'Another Artist Name',
+      duration: '4:20',
       image: 'https://picsum.photos/200?random=2',
     },
-    {
-      id: '3',
-      title: 'örnek 3',
-      image: 'https://picsum.photos/200?random=3',
-    },
-    {
-      id: '4',
-      title: 'lorem picsum',
-      image: 'https://picsum.photos/200?random=4',
-    },
-    {
-      id: '5',
-      title: 'lorem picsum333',
-      image: 'https://picsum.photos/200?random=5',
-    },
-    {
-      id: '6',
-      title: 'lorem picsum222',
-      image: 'https://picsum.photos/200?random=6',
-    },
   ];
+
   return (
-    <View className="flex">
-      <Text className="mb-2 text-xl font-bold">
-        Son Dinlenenler <Ionicons name="musical-notes-outline" size={18} color="black" />
-      </Text>
-      <FlashList
-        data={playlists.slice(0, 6)}
-        numColumns={2}
-        renderItem={({ item }) => <PlaylistCard {...item} />}
-      />
+    <View className="flex-1">
+      <Text className="mt-5 text-xl font-bold text-neutral-800">Son Dinlenenler</Text>
+      {songs.map((song) => (
+        <TouchableOpacity
+          activeOpacity={0.8}
+          key={song.id}
+          className="flex-row items-center justify-between px-4 py-2">
+          <View className="flex-row items-center">
+            <Image source={{ uri: song.image }} className="h-16 w-16 rounded-md" />
+            <View className="ml-2">
+              <Text className="text-base font-bold text-neutral-800">{song.title}</Text>
+              <Text className="text-sm text-neutral-500">{song.artist}</Text>
+            </View>
+          </View>
+          <View className="flex flex-row items-center gap-5">
+            <Text className="text-sm font-bold text-neutral-800">{song.duration}</Text>
+            <TouchableOpacity>
+              <Ionicons name="ellipsis-horizontal-outline" size={25} color="black" />
+            </TouchableOpacity>
+          </View>
+        </TouchableOpacity>
+      ))}
     </View>
   );
 }
